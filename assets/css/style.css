@@ -33,6 +33,7 @@
             border-bottom: 5px solid;
             background-color: white;
             text-align: center;
+            font-size: 30px;
         }
         
          ::placeholder {
