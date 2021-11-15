@@ -19,15 +19,49 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Roboto+Condensed&family=Roboto:wght@300&display=swap" 
     rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet"/>
     <title>ToDo list</title>
     <link rel="stylesheet" href="tasks.css"></link>
 </head>
 <body>
     <div class="header">  
-        <h3></h3>
+        <h3 class="greeting"></h3>
         <i class="fas fa-moon toggle-btn"></i>
     </div>
     <h1 class="title">My Tasks</h1>
+    <div id="myWindow" class="overlay">
+        <form class="box">
+          <fieldset>
+            <div class="taskName-detail">
+              <p class="fs-title">Write your task</p>
+              <div class="tname">
+                <label>New task name</label><br /><input type="text" id="inp" />
+              </div>
+              <div class="details">
+                <label>Details</label><br /><textarea id="details"
+                  name="Text1"
+                  cols="23"
+                  rows="3"
+                ></textarea>
+              </div>
+            </div>
+            <div class="date">Date<br><input type="date" id="date" /></div>
+            <br />
+            <div class="formButtons">
+              <input type="reset" class="reset" />
+              <input class="submit" type="button" id="submit" value="Add" />
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      <button id="plus" class="add" onclick="openWindow()">
+        <i class="fas fa-plus"></i>
+      </button>
+      <div id="todolist"></div>
     <script src="tasks.js"></script>
 </body>
 </html>  
