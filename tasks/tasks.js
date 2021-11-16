@@ -40,6 +40,9 @@ let add = document.getElementById("submit");
 let parent = document.getElementById("todolist");
 let div = document.createElement("div");
 let plus = document.getElementById("plus");
+let edit = document.querySelector(".edit");
+let filterItem;
+let idTask;
 
 plus.addEventListener("click", function () {
     openWindow("add");
@@ -57,7 +60,10 @@ function openWindow(option) {
         details.value = "";
         date.value = "";
     }
-}
+} else {
+    add.value = "edit";
+    document.getElementById("myWindow").style.display = "block";
+    }
 }
 
 // empty array to store the tasks
@@ -83,13 +89,15 @@ add.addEventListener("click", function (event) {
 document.getElementById("myWindow").style.display = "none";
 event.preventDefault();
 if (add.value == "add") {
-if (input.value !== "" && details.value !== "" && date.value !== "") {
+    if (input.value !== "" && details.value !== "" && date.value !== "") {
     addItems(input.value, details.value, date.value);
     input.value = "";
     details.value = "";
     date.value = "";
 }
-}
+    } else {
+    checkValue();
+  }
 });
 function addItems() {
 let idItem = Date.now();
@@ -129,7 +137,9 @@ if (data) {
     } onclick='completeTask(${index});'/> 
             <h3 class="taskTitle">${item.title}</h3>
             <p>${item.details}<br>${item.date}</p>
-            <i class='fas fa-trash delete' id="delete" ></i><i class='fas fa-edit edit'></i>`;
+            <i class='fas fa-trash delete' id="delete" ></i><i class='fas fa-edit edit' onclick="editWindow(${
+                item.id
+            })"></i>`;
     parent.insertBefore(container, parent.childNodes[0]);
 });
 }
@@ -150,3 +160,33 @@ function completeTask(index) {
   localStorage.setItem("Tasks", JSON.stringify(todoItems));
 }
 
+//edit icon
+// checking value for edit
+function checkValue() {
+if (
+    input.value !== filterItem.title ||
+    details.value !== filterItem.details ||
+    date.value !== filterItem.date
+) {
+    todoItems = JSON.parse(localStorage.getItem("Tasks"));
+    for (let i = 0; i < todoItems.length; i++) {
+    if (todoItems[i].id == idTask) {
+        todoItems[i].title = input.value;
+        todoItems[i].details = details.value;
+        todoItems[i].date = date.value;
+    }
+    }
+    // put the new values in localst
+    localStorage.setItem("Tasks", JSON.stringify(todoItems));
+    showList();
+}
+}
+function editWindow(idItem) {
+openWindow("edit");
+todoItems = JSON.parse(localStorage.getItem("Tasks"));
+filterItem = todoItems.filter((task) => task.id == idItem)[0];
+input.value = filterItem.title;
+details.value = filterItem.details;
+date.value = filterItem.date;
+idTask = idItem;
+}
