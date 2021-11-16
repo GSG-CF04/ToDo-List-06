@@ -116,7 +116,7 @@ function showList() {
 let data = JSON.parse(localStorage.getItem("Tasks"));
 parent.innerHTML = "";
 if (data) {
-    data.forEach(function (item) {
+    data.forEach(function (item , index) {
       // Create a node
     let container = document.createElement("div");
     container.setAttribute("class", "task");
@@ -124,7 +124,9 @@ if (data) {
     parent.appendChild(container);
     container.style.backgroundColor =
     "#" + Math.floor(Math.random() * 16777215).toString(16);
-    container.innerHTML = `<input type='checkbox'/> 
+    container.innerHTML = `<input type='checkbox' id='checkbox' ${
+      item.checked ? "checked" : ""
+    } onclick='completeTask(${index});'/> 
             <h3 class="taskTitle">${item.title}</h3>
             <p>${item.details}<br>${item.date}</p>
             <i class='fas fa-trash delete' id="delete" ></i><i class='fas fa-edit edit'></i>`;
@@ -132,3 +134,19 @@ if (data) {
 });
 }
 }
+//check
+function completeTask(index) {
+  let title =
+    document.querySelectorAll(".taskTitle")[todoItems.length - index - 1];
+  let checkbox =
+    document.querySelectorAll("[type=checkbox]")[todoItems.length - index - 1];
+  if (checkbox.checked) {
+    title.style.textDecoration = "line-through";
+    todoItems[index].checked = true;
+  } else {
+    title.style.textDecoration = "none";
+    todoItems[index].checked = false;
+  }
+  localStorage.setItem("Tasks", JSON.stringify(todoItems));
+}
+
