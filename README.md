@@ -12,7 +12,6 @@ Manage your tasks, projects, and even life better with ToDo App.
 - Supports fully customizable recurring tasks
 - Select a certain date or time
 - Unique lists with colorful themes, dark mode, and more
-- Board view with Date, Priority, and Color.
 - Edit the task
 - User friendly
 - Local Storage Supported
@@ -33,7 +32,7 @@ Manage your tasks, projects, and even life better with ToDo App.
 
 ## Live link
 
--link-
+You are welcome to visit our demo website [here](https://gsg-cf04.github.io/ToDo-List-06/)
 
 ## How to get the project locally
 
