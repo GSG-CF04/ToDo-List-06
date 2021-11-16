@@ -9,7 +9,7 @@ function foo() {
     if (document.getElementById("name").value) {
 
         const userName = localStorage.setItem("Name", document.getElementById("name").value);
-        location.href = 'tasks.html'
+        location.href = 'tasks/tasks.html'
     } else {
         alert('Please enter your name')
     }
